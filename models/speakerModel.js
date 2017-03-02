@@ -3,42 +3,39 @@ var textSearch = require('mongoose-text-search');
 var Schema   = mongoose.Schema;
 
 var speakerSchema = new Schema({
-	"lastName" : String,
-	"firstName" : String,
-	"credentials" : String,
-	"company" : String,
+	"residencyProgramName" : String,
+	"programType" : String,
+	"programDirectorName" : String,
+	"programDirectorEmail" : String,
+	"programDirectorNumber" : String,
+	"contactFirstName" : String,
+	"contactLastName" : String,
+	"contactTitle" : String,
 	"cityState" : String,
-	"chapterLocation" : String,
-	"specialty" : String,
-	"emailAddress" : String,
-	"topics" : [String], // use to be Array
-	"categories" : [String], // use to be Array
-	"honorarium" : String,
-	"cost" : String,
-	"willingToTravel" : String,
-	"chaptersPresentedAt" : String,
-	"chapterLeaderRating": String,
-	"chapterLeaderSubmissionCount":String,
-	"attendeeRating":String,
-	"attendeeSubmissionCount":String
+	"city": String,
+	"state": String,
+	"zip": String,
+	"phone": String,
+	"email": String,
+	"hmTrack": String,
+	"website": String,
+	"address" : String,
 });
 
 // give our schema text search capabilities 
 speakerSchema.plugin(textSearch);
 // add a text index to the tags array 
-speakerSchema.index({ lastName: "text",
-					  firstName: "text",
-					  topics: "text",
-					  categories:"text",
+speakerSchema.index({ residencyProgramName: "text",
+					  programType: "text",
+					  hospitalMedicineTrack:"text",
 					  cityState:"text"
 					},
 					{
 					  weights: {
-    			 	  	lastName: 10,
-       				  	firstName: 10,
+    			 	  	residencyProgramName: 10,
        				  	cityState: 8,
-       				  	topics: 5,
-       				  	categories: 1
+       				  	hospitalMedicineTrack: 5,
+       				  	programType: 4
 					  }
 					  // name: "TextIndex"
 					  });
@@ -72,33 +69,35 @@ module.exports.csvToJSon = function(jsonArray){
 								}
 						   		var csvArray = [];
 	                            jsonArray.forEach(function(obj){
-	                                if(obj['Last Name'] !== ""){
+	                                // if(obj['Last Name'] !== ""){
 	      
 	                                    csvArray.push({
-	                                        lastName:obj['Last Name'],
-	                                        firstName:obj['First Name'],
-	                                        credentials: obj['Credentials'],
-	                                        company: obj['Company'],
-	                                        cityState: obj['City, State'],
-	                                        chapterLocation: obj['Chapter Location'],
-	                                        specialty: obj['Specialty'],
-	                                        emailAddress: obj['Email Address'],
-	                                        categories:[obj['Category']], 
-	                                        topics:[obj['Topic(s)']],
-	                                        honorarium: obj['Honorarium'],
-	                                        cost:obj['Cost'],
-	                                        willingToTravel:obj['Willing to Travel'],
-	                                        chaptersPresentedAt:obj['Chapters Presented at']
+	                                        residencyProgramName:obj['Residency Program Name'],
+	                                        programType:obj['Program Type'],
+	                                        programDirectorName:obj['Program Director Name'],
+	                                        programDirectorEmail:obj['Program Director Email'],
+	                                        programDirectorNumber:obj['Residency Program Number'],
+	                                        contactFirstName:obj['Contact First Name'],
+	                                        contactFirstLast:obj['Contact Last Name'],
+	                                        contactTitle:obj['Contact Title'],
+	                                        address:obj['Address 1'],
+	                                        city:obj['City'],
+	                                        state:obj['State'],
+	                                        zip: obj['Zip'],
+	                                        phone: obj['Phone'],
+	                                        email: obj['Email'],
+	                                        hmTrack: obj['HM Track'],
+	                                        website: obj['Website']
 	                                    });
-	                                }
-	                                else{
-	                                    csvArray[csvArray.length-1]['categories'].push(obj['Category']);
-	                                    csvArray[csvArray.length-1]['topics'].push(obj['Topic(s)']);
-	                                }
-	                                // conditional for Chapter Leader rating
-	                                ratingSorter.call(obj,'chapterLeaderRating','chapterLeaderSubmissionCount','Chapter Leader Rating','Chapter Leader Submission Count');
-	                                // conditional for Attendee
-	                                ratingSorter.call(obj,'attendeeRating','attendeeSubmissionCount','Attendee Rating','Attendee Submission Count');
+	                                // }
+	                                // else{
+	                                //     csvArray[csvArray.length-1]['categories'].push(obj['Category']);
+	                                //     csvArray[csvArray.length-1]['topics'].push(obj['Topic(s)']);
+	                                // }
+	                                // // conditional for Chapter Leader rating
+	                                // ratingSorter.call(obj,'chapterLeaderRating','chapterLeaderSubmissionCount','Chapter Leader Rating','Chapter Leader Submission Count');
+	                                // // conditional for Attendee
+	                                // ratingSorter.call(obj,'attendeeRating','attendeeSubmissionCount','Attendee Rating','Attendee Submission Count');
 	                            });
 	                            return csvArray;
 							}
