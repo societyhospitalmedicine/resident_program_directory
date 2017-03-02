@@ -1,0 +1,11 @@
+{
+    "production": {
+        "url": "mongodb://localhost/chapter-speaker-directory"
+    },
+    "test": {
+        "url": "mongodb://localhost/chapter-speaker-directory-test"
+    },
+    "development": {
+        "url": "mongodb://localhost/chapter-speaker-directory-dev"
+    }
+}
