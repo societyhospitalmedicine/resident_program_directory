@@ -33,7 +33,6 @@ gulp.task('copy', function(){
 
 gulp.task('watch', function() {
   gulp.watch(path.HTML, ['copy']);
-
   var watcher  = watchify(browserify({
     entries: [path.ENTRY_POINT],
     // uncomment reactify to use reactify library and comment babelify library

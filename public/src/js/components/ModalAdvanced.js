@@ -8,7 +8,6 @@ var Button = ReactBootstrap.Button;
 var Row = ReactBootstrap.Row;
 var Col = ReactBootstrap.Col;
 var todoActions = require('../actions/todoActions');
-var Ratings = require('./Ratings');
 
 var ModalAdvanced = React.createClass({
 
@@ -62,11 +61,6 @@ var ModalAdvanced = React.createClass({
                 <p><strong>Cost:</strong> {this.props.speaker.cost}</p>
                 <p><strong>Travel:</strong> {this.props.speaker.willingToTravel}</p>
                 <p><strong>Chapters Presented at:</strong> {this.props.speaker.chaptersPresentedAt}</p>
-                <Ratings 
-                chapterLeaderRating={this.props.speaker.chapterLeaderRating} 
-                chapterLeaderSubmissionCount={this.props.speaker.chapterLeaderSubmissionCount}
-                attendeeRating={this.props.speaker.attendeeRating}
-                attendeeSubmissionCount={this.props.speaker.attendeeSubmissionCount}/>
               </Col>
             </Row>
             <Row>
