@@ -34,24 +34,24 @@ var ModalAdvanced = React.createClass({
           href="#"
           onClick={ this.open}
         >
-          	<strong>{this.props.speaker.lastName} {this.props.speaker.firstName}, {this.props.speaker.credentials}</strong></a> 
+          	<strong>{this.props.speaker.residencyProgramName}</strong></a> 
           	<br></br>
         </span>
 
         <Modal  show={this.state.showModal} onHide={this.close} >
           <Modal.Header >
             <Modal.Title>
-                <strong className='text-color-green'> {this.props.speaker.lastName} {this.props.speaker.firstName}, {this.props.speaker.credentials}</strong>
+                <strong className='text-color-green'> {this.props.speaker.residencyProgramName}</strong>
             </Modal.Title>
           </Modal.Header>
           <Modal.Body >
             <Row>
               <Col  sm={6}  >
-                <p><strong>Company:</strong> {this.props.speaker.company}</p>
-                <p><strong>City, State:</strong> {this.props.speaker.cityState}</p>
-                <p><strong>Chapter Location:</strong> {this.props.speaker.chapterLocation}</p>
+                <p><strong>Address:</strong> {this.props.speaker.address}</p>
+                <p><strong>City, State:</strong> {this.props.speaker.city}, {this.props.speaker.state}</p>
+                <p><strong>Director name:</strong> {this.props.speaker.programDirectorName}</p>
                 <p><strong>Specialty:</strong> {this.props.speaker.specialty}</p>
-                <p><strong>Email Address:</strong> {this.props.speaker.emailAddress}</p>
+                <p><strong>Program Director email:</strong> {this.props.speaker.programDirectorEmail}</p>
                 <p><strong>Topic(s):</strong> {this.props.speaker.topics}</p>
                 <p><strong>Chapter Location:</strong> {this.props.speaker.chapterLocation}</p>
                 <p><strong>Topic Category:</strong> {this.props.speaker.categories}</p>

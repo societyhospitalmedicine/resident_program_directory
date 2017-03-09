@@ -78,7 +78,7 @@ module.exports.csvToJSon = function(jsonArray){
 	                                        programDirectorEmail:obj['Program Director Email'],
 	                                        programDirectorNumber:obj['Residency Program Number'],
 	                                        contactFirstName:obj['Contact First Name'],
-	                                        contactFirstLast:obj['Contact Last Name'],
+	                                        contactLastName:obj['Contact Last Name'],
 	                                        contactTitle:obj['Contact Title'],
 	                                        address:obj['Address 1'],
 	                                        city:obj['City'],

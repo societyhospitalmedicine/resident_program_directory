@@ -25,9 +25,8 @@ var SearchResults = React.createClass({
 						return (
 							<li key={index} className='list-group-item' style={{border:0}}>
 								<ModalAdvanced speaker={speaker}/>
-								<p style={{marginBottom:"5px"}}><strong>Location:</strong> {speaker.cityState}</p>
-								<span><strong>Topic(s):</strong> {_.sortedUniq(speaker.topics).join(', ')}</span><br></br>
-								<span><strong>Topic Category:</strong> {_.sortedUniq(speaker.categories).join(', ')}</span><br></br>
+								<p style={{marginBottom:"5px"}}><strong>Location</strong> {speaker.city}, {speaker.state}</p>
+								<span><strong>Hospital Medicine Track:</strong> {speaker.hmTrack}</span><br></br>
 							</li>
 						);
 					}.bind(this));
