@@ -27,7 +27,7 @@ var ModalAdvanced = React.createClass({
   render: function(){
     var popover = <Popover id="myPopover" title="popover">very popover. such engagement</Popover>;
     var tooltip = <Tooltip id='myTooltip'>wow.</Tooltip>;
-    var mailAction = "mailto:"+this.props.speaker.emailAddress+"?subject=SHM%20Chapter%20Speaker%20Request";
+    var mailAction = "mailto:"+this.props.speaker.programDirectorEmail+"?subject=SHM%20Chapter%20Speaker%20Request";
     return (
       <div>
        <span > <a
@@ -50,23 +50,19 @@ var ModalAdvanced = React.createClass({
                 <p><strong>Address:</strong> {this.props.speaker.address}</p>
                 <p><strong>City, State:</strong> {this.props.speaker.city}, {this.props.speaker.state}</p>
                 <p><strong>Director name:</strong> {this.props.speaker.programDirectorName}</p>
-                <p><strong>Specialty:</strong> {this.props.speaker.specialty}</p>
-                <p><strong>Program Director email:</strong> {this.props.speaker.programDirectorEmail}</p>
-                <p><strong>Topic(s):</strong> {this.props.speaker.topics}</p>
-                <p><strong>Chapter Location:</strong> {this.props.speaker.chapterLocation}</p>
-                <p><strong>Topic Category:</strong> {this.props.speaker.categories}</p>
+                <p><strong>Phone #</strong> {this.props.speaker.phone}</p>
               </Col>
               <Col  sm={6}  >
-                <p><strong>Honorarium:</strong> {this.props.speaker.honorarium}</p>
-                <p><strong>Cost:</strong> {this.props.speaker.cost}</p>
-                <p><strong>Travel:</strong> {this.props.speaker.willingToTravel}</p>
-                <p><strong>Chapters Presented at:</strong> {this.props.speaker.chaptersPresentedAt}</p>
+                <p><strong>Contact Name:</strong> {this.props.speaker.contactFirstName} {this.props.speaker.contactLastName}</p>
+                <p><strong>Contact Email:</strong> {this.props.speaker.email}</p>
+                <p><strong>Hospital Medicine Track:</strong> {this.props.speaker.hmTrack}</p>
+                <p><strong>Url:</strong> <a href={this.props.speaker.website} target='blank'>{this.props.speaker.residencyProgramName}</a></p>
               </Col>
             </Row>
             <Row>
               <Col  sm={12} style={{marginTop:'30px'}}>
                 <form method="post" action={mailAction} >
-                  <Button type="submit"  className="center-block background-green" bsStyle="success" bsSize="large">Email Speaker</Button>
+                  <Button type="submit"  className="center-block background-green" bsStyle="success" bsSize="large">Email Director</Button>
                 </form>
               </Col>
             </Row>
