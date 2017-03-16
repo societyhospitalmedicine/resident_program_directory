@@ -27,21 +27,23 @@ speakerSchema.plugin(textSearch);
 // add a text index to the tags array 
 speakerSchema.index({ residencyProgramName: "text",
 					  programType: "text",
-					  hospitalMedicineTrack:"text",
-					  cityState:"text"
+					  hmTrack:"text",
+					  city:"text",
+					  state:'text',
+					  programType:'text'
 					},
 					{
 					  weights: {
     			 	  	residencyProgramName: 10,
-       				  	cityState: 8,
-       				  	hospitalMedicineTrack: 5,
+       				  	city: 8,
+       				  	state:8,
+       				  	hmTrack: 5,
        				  	programType: 4
 					  }
 					  // name: "TextIndex"
 					  });
 
 module.exports = mongoose.model('speaker', speakerSchema);
-
 module.exports.removeAll = function(){ 
 						   		this.remove( { }, function(err,res){
 	                        		if(err){
@@ -106,6 +108,7 @@ module.exports.csvToJSon = function(jsonArray){
 module.exports.saveCSV = function(jsonArray){ 
 						 	jsonArray.forEach(function(obj){
 	                        	this.create(obj, function(err, speaker) {
+	                        		
 	                            	if (err) {
 	                                    return err;
 	                                }
@@ -128,20 +131,20 @@ module.exports.saveCSV = function(jsonArray){
                     });
                 }
               
-                
-                    return this.res.json({results:
-                        //FILTER RESULTS
-                        speakers.filter(
-                            function(spk,ind,spkArr){
-                               var filteredSpeakerCategories = spk.categories.map(function(category){return category.replace(/[^A-Za-z,]/g, ' ').trim()});
-                               var found = filteredSpeakerCategories.indexOf(this.search_category.replace(/[^A-Za-z,]/g, ' ').trim());
-                                if(found >-1){
+                return this.res.json({results:speakers});
+                    // return this.res.json({results:
+                    //     //FILTER RESULTS
+                    //     speakers.filter(
+                    //         function(spk,ind,spkArr){
+                    //           var filteredSpeakerCategories = spk.categories.map(function(category){return category.replace(/[^A-Za-z,]/g, ' ').trim()});
+                    //           var found = filteredSpeakerCategories.indexOf(this.search_category.replace(/[^A-Za-z,]/g, ' ').trim());
+                    //             if(found >-1){
                                     
-                                    return spk;
-                                }
-                            }.bind(this))
-                         }
-                    );
+                    //                 return spk;
+                    //             }
+                    //         }.bind(this))
+                    //      }
+                    // );
                
                     
                

@@ -40,7 +40,8 @@ var SpeakerContainer = React.createClass({
     var cityState = document.getElementById('cityState-input').value;
     var topic = document.getElementById('topics-input').value;
     var search_category = document.getElementById('categories-input').value; 
-    (search_category === "Topic Category" || search_category === "All Topic Categories") ? search_category="" : search_category;
+    console.log(name, cityState, topic, search_category);
+    ( search_category === "Hospital Medicine Track") ? search_category="" : search_category;
     var search_main = (name+ " "+cityState+" "+topic).trim();
     
     if((search_category ==="" ||search_category ===null) && (search_main ===""|| search_main===null)){

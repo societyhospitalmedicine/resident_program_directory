@@ -2,8 +2,7 @@ var speakerModel = require('../models/speakerModel.js');
 var async = require('async');
 var fs = require('fs');
 
-
-
+// speakerModel.collection.createIndex( { residencyProgramName: "text" } )
 /**
  * speakerController.js
  *
@@ -205,12 +204,12 @@ module.exports = {
         
         //CONDITIONAL FOR IF THERE IS A SEARCH_CATEGORY IN SEARCH OR NOT
         if(this.search_main ==="" && this.search_category!==""){
-            var speakers = speakerModel.find( {}, 
+            var speakers = speakerModel.find( {hmTrack:this.search_category}, 
                                             speakerModel.filterByTopicCategory.bind(this) )
                                             
         }
         else if(this.search_main !=="" && this.search_category!==""){ 
-             var speakers = speakerModel.find( { $text: { $search: this.search_main} },
+             var speakers = speakerModel.find( { $text: { $search: this.search_main} },{hmTrack:this.search_category},
                                             {'score': {'$meta': 'textScore'}}, 
                                             speakerModel.filterByTopicCategory.bind(this) )
                                             .sort( { score: { $meta: "textScore" } } )
@@ -227,4 +226,3 @@ module.exports = {
            
     }
 };
-
