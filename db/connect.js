@@ -4,5 +4,5 @@ var config = require('./config');
 if(env!== "production"){
     mongoose.connect(config[env].url);
 }else{
-    mongoose.connect(process.env['PROD_MONGODB'])
+    mongoose.connect(process.env['MONGODB_URI'])
 }
