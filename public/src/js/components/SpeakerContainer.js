@@ -73,7 +73,7 @@ var SpeakerContainer = React.createClass({
         
         <Row className="show-grid">
 					<Col  sm={12}  >
-              <h3 className="" style={{color:'#8BC216'}}>Chapter Speaker Directory</h3>
+              <h3 className="" style={{color:'#8BC216'}}>Residency Program Directory</h3>
           </Col>
         </Row>
           <SearchBar search={this.handleSearchSpeakers}/>
