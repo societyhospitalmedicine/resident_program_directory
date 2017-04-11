@@ -72,30 +72,42 @@ module.exports.csvToJSon = function(jsonArray){
 						   		var csvArray = [];
 	                            jsonArray.forEach(function(obj){
 	                                // if(obj['Last Name'] !== ""){
-	    								Object.keys(obj).forEach((key)=>{
-	    									console.log('here! ',obj[key])
+	                                
+	                                console.log('obj before',obj)
+	                                obj = JSON.parse(JSON.stringify(obj).replace('�','') ) ; 
+	                                console.log('obj after',obj)
+	    							var pushToArray = ()=>{
+		                                    csvArray.push({
+		                                        residencyProgramName:obj['Residency Program Name'],
+		                                        programType:obj['Program Type'],
+		                                        programDirectorName:obj['Program Director Name'],
+		                                        programDirectorEmail:obj['Program Director Email'],
+		                                        programDirectorNumber:obj['Residency Program Number'],
+		                                        contactFirstName:obj['Contact First Name'],
+		                                        contactLastName:obj['Contact Last Name'],
+		                                        contactTitle:obj['Contact Title'],
+		                                        address:obj['Address 1'],
+		                                        city:obj['City'],
+		                                        state:obj['State'],
+		                                        zip: obj['Zip'],
+		                                        phone: obj['Phone'],
+		                                        email: obj['Email'],
+		                                        hmTrack: obj['HM Track'],
+		                                        website: obj['Website']
+		                                    });
+	    							}
+	    							    var objKeys = Object.keys(obj);
+	    							    var objCount = 0;
+	    								objKeys.forEach((key)=>{
+	    									console.log('there2! ',obj[key]);
+	    									objCount+=1;
 	    									if(typeof obj[key] === "string" ){
 	    										obj[key].replace('�','') ;
 	    									}
+	    									if(objCount==objKeys.length){
+	    										pushToArray();
+	    									}
 	    								})
-	                                    csvArray.push({
-	                                        residencyProgramName:obj['Residency Program Name'],
-	                                        programType:obj['Program Type'],
-	                                        programDirectorName:obj['Program Director Name'],
-	                                        programDirectorEmail:obj['Program Director Email'],
-	                                        programDirectorNumber:obj['Residency Program Number'],
-	                                        contactFirstName:obj['Contact First Name'],
-	                                        contactLastName:obj['Contact Last Name'],
-	                                        contactTitle:obj['Contact Title'],
-	                                        address:obj['Address 1'],
-	                                        city:obj['City'],
-	                                        state:obj['State'],
-	                                        zip: obj['Zip'],
-	                                        phone: obj['Phone'],
-	                                        email: obj['Email'],
-	                                        hmTrack: obj['HM Track'],
-	                                        website: obj['Website']
-	                                    });
 	                                // }
 	                                // else{
 	                                //     csvArray[csvArray.length-1]['categories'].push(obj['Category']);
