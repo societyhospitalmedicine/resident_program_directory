@@ -55,29 +55,9 @@ module.exports.removeAll = function(){
 							
 
 module.exports.csvToJSon = function(jsonArray){
-								// function with conditional for chapter leader ratings
-								function ratingSorter(ratingAttr,numberAttr,csvRating,csvNumber){
-									if(this['Last Name'] !== ""){
-										
-										// conditional for chapter leader ratings
-		                                if(isNaN(this[csvNumber]) || this[csvNumber]==='0' || this[csvNumber] ===''){
-		                                	csvArray[csvArray.length-1][ratingAttr]='N/A',
-		                                	csvArray[csvArray.length-1][numberAttr]='N/A'
-		                                }else{
-		                                	csvArray[csvArray.length-1][ratingAttr]=this[csvRating],
-		                                	csvArray[csvArray.length-1][numberAttr]=this[csvNumber]
-		                                }
-									}
-								}
-						   		var csvArray = [];
-	                            jsonArray.forEach(function(obj){
-	                                // if(obj['Last Name'] !== ""){
-	                                
-	                                console.log('obj before',obj)
-	                                obj = JSON.parse(JSON.stringify(obj).replace('�','') ) ; 
-	                                console.log('obj after',obj)
-	    							var pushToArray = ()=>{
-		                                    csvArray.push({
+							
+						   		var pushToArray = (obj)=>{
+		                                    return {
 		                                        residencyProgramName:obj['Residency Program Name'],
 		                                        programType:obj['Program Type'],
 		                                        programDirectorName:obj['Program Director Name'],
@@ -94,31 +74,31 @@ module.exports.csvToJSon = function(jsonArray){
 		                                        email: obj['Email'],
 		                                        hmTrack: obj['HM Track'],
 		                                        website: obj['Website']
-		                                    });
+		                                    };
 	    							}
+	                             return jsonArray.map(function(obj){
+	                                // if(obj['Last Name'] !== ""){
+	                                
+	                               
+	    							
 	    							    var objKeys = Object.keys(obj);
 	    							    var objCount = 0;
 	    								objKeys.forEach((key)=>{
-	    									console.log('there2! ',obj[key]);
+	    									
 	    									objCount+=1;
-	    									if(typeof obj[key] === "string" ){
-	    										obj[key].replace('�','') ;
-	    									}
-	    									if(objCount==objKeys.length){
-	    										pushToArray();
-	    									}
+	    									// if(typeof obj[key] === "string" ){
+	    										obj[key] = obj[key].toString().replace('�','') ;
+	    									// }
+	    									// if(objCount==objKeys.length){
+	    									// 	console.log(pushToArray(obj))
+	    									// 	// return pushToArray(obj);
+	    									// }
 	    								})
-	                                // }
-	                                // else{
-	                                //     csvArray[csvArray.length-1]['categories'].push(obj['Category']);
-	                                //     csvArray[csvArray.length-1]['topics'].push(obj['Topic(s)']);
-	                                // }
-	                                // // conditional for Chapter Leader rating
-	                                // ratingSorter.call(obj,'chapterLeaderRating','chapterLeaderSubmissionCount','Chapter Leader Rating','Chapter Leader Submission Count');
-	                                // // conditional for Attendee
-	                                // ratingSorter.call(obj,'attendeeRating','attendeeSubmissionCount','Attendee Rating','Attendee Submission Count');
+	    							return pushToArray(obj)
+	                               //return pushToArray(obj);
 	                            });
-	                            return csvArray;
+	    						
+	                            // return csvArray;
 							}
 							
 
@@ -131,7 +111,6 @@ module.exports.saveCSV = function(jsonArray){
 	                                }
 	                                return speaker;
 	                                        //callback(item);
-	                                        //console.log(speaker)
 	                                    });
 	                                }.bind(this));
 	                                return;
