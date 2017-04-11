@@ -74,7 +74,9 @@ module.exports.csvToJSon = function(jsonArray){
 	                                // if(obj['Last Name'] !== ""){
 	    								Object.keys(obj).forEach((key)=>{
 	    									console.log('here! ',obj[key])
-	    									obj[key].replace('�','')
+	    									if(typeof obj[key] === "string" ){
+	    										obj[key].replace('�','') ;
+	    									}
 	    								})
 	                                    csvArray.push({
 	                                        residencyProgramName:obj['Residency Program Name'],
