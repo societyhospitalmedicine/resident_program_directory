@@ -27,7 +27,7 @@ var ModalAdvanced = React.createClass({
   render: function(){
     var popover = <Popover id="myPopover" title="popover">very popover. such engagement</Popover>;
     var tooltip = <Tooltip id='myTooltip'>wow.</Tooltip>;
-    var mailAction = "mailto:"+this.props.speaker.programDirectorEmail+"?subject=SHM%20Chapter%20Speaker%20Request";
+    var mailAction = "mailto:"+this.props.speaker.programDirectorEmail+"?subject=SHM%20Residency%20Program%20Request";
     return (
       <div>
        <span > <a
