@@ -38,7 +38,7 @@ speakerSchema.index({ residencyProgramName: "text",
        				  	city: 8,
        				  	state:8,
        				  	hmTrack: 5,
-       				  	programType: 4
+       				  	programType: 8
 					  }
 					  // name: "TextIndex"
 					  });
