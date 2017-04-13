@@ -22,7 +22,7 @@ var SearchBar= React.createClass({
                     		</Col>
                     		<Col xs={4}>
                     			<select name="category" id="categories-input" style={{width:'70%',float:'left'}} className="form-control">
-                    			    <option selected disabled style={{display:"none"}}>Hospital Medicine Track</option>
+                    			    <option selected  value="">Hospital Medicine Track</option>
                     			    <option value="Yes" >Yes</option>
                               <option value="No"> No</option>
                           </select>
