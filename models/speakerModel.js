@@ -126,8 +126,17 @@ module.exports.saveCSV = function(jsonArray){
                         error: err
                     });
                 }
-              
-                return this.res.json({results:speakers});
+               console.log(this.search_category);
+                return this.res.json({results:
+                	speakers.filter((spk)=>{
+                		var found = spk.hmTrack.indexOf(this.search_category.replace(/[^A-Za-z,]/g, ' ').trim());
+                		if(found>-1){
+                			return true;
+                		}
+                		return false;
+		        
+	               })
+                });
                     // return this.res.json({results:
                     //     //FILTER RESULTS
                     //     speakers.filter(
