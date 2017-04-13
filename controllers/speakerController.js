@@ -209,7 +209,7 @@ module.exports = {
                                             
         }
         else if(this.search_main !=="" && this.search_category!==""){ 
-             var speakers = speakerModel.find( { $text: { $search: this.search_main} },{hmTrack:this.search_category},
+             var speakers = speakerModel.find( { $text: { $search: this.search_main+" "+this.search_category} },
                                             {'score': {'$meta': 'textScore'}}, 
                                             speakerModel.filterByTopicCategory.bind(this) )
                                             .sort( { score: { $meta: "textScore" } } )
